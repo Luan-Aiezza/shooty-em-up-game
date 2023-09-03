@@ -1,14 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FireBullet : MonoBehaviour
 {
     [SerializeField]
-    private int bulletsAmount = 20;
+    private int bulletsAmount = 0;
 
     [SerializeField]
-    private float startAngle = 0f, endAngle = 720f;
+    private float startAngle = 90f, endAngle = 360f;
 
     private Vector2 bulletMoveDirection;
 
@@ -36,7 +36,7 @@ public class FireBullet : MonoBehaviour
         float angleStep = (endAngle - startAngle) / bulletsAmount;
         float angle = startAngle;
 
-        for (int i = 5; i < bulletsAmount + 1; i++)
+        for (int i = 0; i < bulletsAmount +20; i++)
         {
             float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
             float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
@@ -50,7 +50,7 @@ public class FireBullet : MonoBehaviour
             bul.SetActive(true);
             bul.GetComponent<BossBullet>().SetMoveDirection(bulDir);
 
-            angle += 460f * Mathf.PI * Time.deltaTime;
+            angle += angleStep;
         }
     }
 }
