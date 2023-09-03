@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -80,13 +80,22 @@ public class Protagonista : MonoBehaviour
         isDead = true;
         sprite.enabled = false;
         gameObject.layer = 10;
+        
+        // Defina a coordenada fixa onde o jogador deve aparecer
+        Vector3 spawnPosition = new Vector3(0.04f, -2.395f, 0f); // Substitua com as coordenadas desejadas
+
         yield return new WaitForSeconds(spawnTime);
+        // Define a posição do jogador para a coordenada fixa
+        transform.position = spawnPosition;
+        
         isDead = false;
-        for(float i = 0; i <invencibilityTime; i+= 0.1f)
+        
+        for (float i = 0; i < invencibilityTime; i += 0.1f)
         {
             sprite.enabled = !sprite.enabled;
             yield return new WaitForSeconds(0.1f);
         }
+        
         gameObject.layer = 8;
         sprite.enabled = true;
     }
